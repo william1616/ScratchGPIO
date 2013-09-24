@@ -22,4 +22,4 @@ def sendScratchCommand(cmd):
 	scratchSock.send(a.tostring() + cmd)
 
 while True:
-	pass
+	print scratchSock.recv(4096)
