@@ -3,13 +3,8 @@ import socket
 import time
 import sys
 
-from Tkinter import Tk
-from tkSimpleDialog import askstring
-root = Tk() # create a new GUI
-root.withdraw()
-
 PORT = 42001
-HOST = askstring('Scratch Connector', 'IP:') # use the GUI to obtain the IP address to connect to
+HOST = raw_input()
 if not HOST:
 	sys.exit()
 
@@ -29,6 +24,6 @@ def sendScratchCommand(cmd):
 	scratchSock.send(a.tostring() + cmd)
 
 while True:
-	msg = askstring('Scratch Connector', 'Send Broadcast:')
+	msg = raw_input()
 	if msg:
 		sendScratchCommand('broadcast "' + msg + '"')
