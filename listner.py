@@ -4,9 +4,7 @@ import time
 import sys
 
 PORT = 42001
-HOST = raw_input()
-if not HOST:
-	sys.exit()
+HOST = 'localhost'
 
 print("Connecting...")
 scratchSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # create a new local socket of type SOCK_STREAM
@@ -24,6 +22,4 @@ def sendScratchCommand(cmd):
 	scratchSock.send(a.tostring() + cmd)
 
 while True:
-	msg = raw_input()
-	if msg:
-		sendScratchCommand('broadcast "' + msg + '"')
+	pass
