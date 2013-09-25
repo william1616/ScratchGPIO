@@ -12,10 +12,10 @@ def setIn(pin):
   
 def toggle(pin):
   try:
-    GPIO.output(pin, not GPIO.input(12))
+    GPIO.output(pin, not GPIO.input(pin))
   except: # change to except <error> at later date to only catch setup errors
     setOut(pin)
-    GPIO.output(pin, not GPIO.input(12))
+    GPIO.output(pin, not GPIO.input(pin))
 	
 def out(pin, state):
   try:
