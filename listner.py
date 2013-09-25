@@ -85,4 +85,3 @@ if __name__ == '__main__':
         m = scratchSock.recv(4096)
         print 'message ('+m+') received'
         cmdtype(m)
-        #GPIO.cleanup()
