@@ -63,4 +63,8 @@ if __name__ == '__main__':
 	while True:
 		m = scratchSock.recv(4096)
 		# the first four characters are blank so remove them before processing broadcast command
-		run_command(m[4:])
+                print 'length '+len(m)
+                print m[:5]
+                print 'ascii code: '+ord(m[1])
+                print m.split()
+		#run_command(m[4:])
