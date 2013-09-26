@@ -48,7 +48,7 @@ def updatepwm(pin, freq, dc, state):
       j = 0
       while j < len(change[:]):
         i[j] = change[j]
-	    j += 1
+        j += 1
       i[4].ChangeFrequency(i[1])
       i[4].ChangeDutyCycle(i[2])
       if i[3] == True:
@@ -63,6 +63,3 @@ def new_pwm(pin, freq, dc, state):
     setOut(pin)
     pwms.append([pin, freq, dc, state, GPIO.PWM(pin, freq)])
     updatepwm(pin, freq, dc, state)
-	
-new_pwm(18, 0.5, 100, True)
-rawinput()
