@@ -61,11 +61,15 @@ def broadcast(cmd):
 def cmdtype(msg):
     i = 0
     commands = []
+    types = ['sensor-update', 'broadcast']
     while i <= len(msg):
-        if msg[i:i + 13] == 'sensor-update':
-            commands.append(["sensor-update",i])
-        if msg[i:i + 9] == 'broadcast':
-            commands.append(["broadcast",i])
+        for j in types:
+            if msg[i:i + len(j)] == j:
+                commands.append([j, i])
+            #if msg[i:i + 13] == 'sensor-update':
+            #    commands.append(["sensor-update",i])
+            #if msg[i:i + 9] == 'broadcast':
+            #    commands.append(["broadcast",i])
         i += 1
     for i in commands:
         j = i[1] + len(i[0]) + 2
@@ -85,4 +89,4 @@ if __name__ == '__main__':
         m = scratchSock.recv(4096)
         print 'message ('+m+') received'
         cmdtype(m)
-        #GPIO.cleanup()
+    #GPIO.cleanup()
