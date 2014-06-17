@@ -52,7 +52,7 @@ def createPWM(**pin):
 			log.info()
 	except exception:
 		log.error()
-			
+
 def runPWM(**pin):
 	# pin['number'] == pin number
 	# pin['dutyCycle'] == pwm dc
