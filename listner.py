@@ -36,8 +36,41 @@ def broadcast(**pin):
   except:
     log.warning('Invalid Argument Supplied - Pin: %s State: %s', pin['number'], pin['state'])
     
-def pulseWidthMod(**pin):
-    pass
+true = ['true', 'on', 'start']
+false = ['false', 'off', 'stop']
+PWM = {}
+
+def createPWM(**pin):
+	# pin['number'] == pin number
+	# pin['frequency'] == pwm freq
+	try:
+		if pin['number'] in pwms.keys():
+			PWM[pin['number']].ChangeFrequency(pin['frequency'])
+			log.info()
+		else:
+			PWM[pin['number']] = GPIO.PWM(pin['number'], pin['frequency'])
+			log.info()
+	except exception:
+		log.error()
+			
+def runPWM(**pin):
+	# pin['number'] == pin number
+	# pin['dutyCycle'] == pwm dc
+	# pin['state'] == pwm state (on/off)
+	try:
+		if pin['number'] in pwms.keys():
+			if pin['state'].lower() in false:
+				PWM[pin['number']].stop()
+				log.info()
+			elif pin['state'].lower() in true:
+				PWM[pin['number']].start(pin['dutyCycle'])
+				log.info()
+			else:
+				log.warning()
+		else:
+			log.warning()
+	except exception:
+		log.error()
 
 class cmdType():
         def __init__(self, name, argCnt, func):
@@ -48,6 +81,8 @@ class cmdType():
 def spliceCmd(commandString):
   types = [
           cmdType('broadcast', 2, lambda args: broadcast(number=args[0], state=args[1])),
+          cmdType('createPWM', 2, lambda args: createPWM(number=args[0], frequency=args[1])),
+          cmdType('runPWM', 2, lambda args: runPWM(number=args[0], state=args[1])),
           ]
   commandList = commandString.split()
   i = 0
